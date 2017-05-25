@@ -1,0 +1,17 @@
+1. Add ; to the end of line 53
+add void to convert
+
+2. The output shows repeated results --> something is wrong.
+
+3. ASCII of '4' - ASCII of '0' copied to maxNumConsonant. use print maxNumConsonant to find outh maxNumConsonant = 4.
+
+4. 0x7fffffffde90 is stored in phone, which is the address/pointer to the string "4460175"
+
+5. for loop works, the evidence is the array phone_int is assigned {4, 4, 6, 0, 1, 7, 5} by using tricks {'4' - '0', ...}
+
+6. the loops work from inside to outside. We know it by throwing a bunch of display to see the change of indices
+
+7. word=0x7fffffffde50 "ggm01pj", use print word. The value is correct
+8. passing pointer allows the program access and change the value it points to.
+
+9. We expect the address of level does not change but the value it points to increases by 1 --> change *level++ into (*level)++ 

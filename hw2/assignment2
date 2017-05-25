@@ -1,0 +1,724 @@
+Script started on Tue 03 Jan 2017 04:22:29 PM PST
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ ./a.out 
+This program finds words that can be associated with
+phone numbers
+
+
+What is the maximum number of consonants you would like
+the generated word to possess?
+(note: 0's and 1's are considered consonants)
+4
+Please enter a 7 digit phone number with dashes removed
+4460175
+iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  
+
+Would you like to try another number? (Y/N)
+n
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gdb a.out 
+GNU gdb (Ubuntu 7.11-0ubuntu1) 7.11
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+(gdb) break main
+Breakpoint 1 at 0x40066a
+(gdb) run
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 1, 0x000000000040066a in main ()
+(gdb) print goahead
+No symbol "goahead" in current context.
+(gdb) next
+Single stepping until exit from function main,
+which has no line number information.
+This program finds words that can be associated with
+phone numbers
+
+
+What is the maximum number of consonants you would like
+the generated word to possess?
+(note: 0's and 1's are considered consonants)
+^C
+Program received signal SIGINT, Interrupt.
+0x00007ffff7b049b0 in __read_nocancel ()
+    at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) be[Krear[Kk 42
+Breakpoint 2 at 0x7ffff7b04620: file ../sysdeps/unix/syscall-template.S, line 42.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 2, access () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 2, access () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) info breakpoints
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040066a <main+4>
+2       breakpoint     keep y   <MULTIPLE>         
+	breakpoint already hit 1 time
+2.1                         y     0x00007ffff7df2150 ../sysdeps/unix/syscall-template.S:42
+2.2                         y     0x00007ffff7df2170 ../sysdeps/unix/syscall-template.S:42
+2.3                         y     0x00007ffff7df2190 ../sysdeps/unix/syscall-template.S:42
+2.4                         y     0x00007ffff7df21b0 ../sysdeps/unix/syscall-template.S:42
+2.5                         y     0x00007ffff7df2250 ../sysdeps/unix/syscall-template.S:42
+(gdb) Quit
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 2, access () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) s[Kkill
+Kill the program being debugged? (y or n) y
+(gdb) run
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 2, access () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) print goahead
+No symbol "goahead" in current context.
+(gdb) Quit
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 10474] will be killed.
+
+Quit anyway? (y or n) y
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gdb a.out 
+GNU gdb (Ubuntu 7.11-0ubuntu1) 7.11
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+(gdb) infor[K break[[Kpoints
+No breakpoints or watchpoints.
+(gdb) bea[K[Kea[K[Kreak main
+Breakpoint 1 at 0x40066a
+(gdb) be[Kreak 43
+No symbol table is loaded.  Use the "file" command.
+(gdb) w
+Ambiguous command "w": watch, wh, whatis, where, while, while-stepping, winheight, ws.
+(gdb) q
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gdb a.out [2P./[C[C[C[C[C[C[4Pmake[2Plscd ..[3Plsmake./a.out [2@gdb [C[C[C[C[C[C[Kgdb a.out [2P./[C[C[C[C[C[C[4Pmake[2Plscd ..[3Plssubl .[4Plscd Downloads/make[K cleanls[Kmake[2Plsmake cleanls[Kmakerm a.out ls[Kmake[2Plsmake[2Plsrm a.out [5Pmake[2Plsmake cleanls[Kmake[2Plsmake clean[Kcd Downloads/ls[Ksubl .[4Plscd ..[3Plsmake./a.out [2@gdb [C[C[C[C[C[C[Kgcc a.out[K[K[K[K[Kgenerate.c 
+[01m[Kgenerate.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kgenerate.c:57:7:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kgets[m[K’ [-Wimplicit-function-declaration]
+       gets (input);
+[01;32m[K       ^[m[K
+/tmp/cc279nwb.o: In function `main':
+generate.c:(.text+0x62): warning: the `gets' function is dangerous and should not be used.
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gcc -g generate.c 
+[01m[Kgenerate.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kgenerate.c:57:7:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kgets[m[K’ [-Wimplicit-function-declaration]
+       gets (input);
+[01;32m[K       ^[m[K
+/tmp/cc9FAetg.o: In function `main':
+/home/taflab/workplace/9C/hw2/generate.c:57: warning: the `gets' function is dangerous and should not be used.
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gdb a.out 
+GNU gdb (Ubuntu 7.11-0ubuntu1) 7.11
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) be[Kreak main
+Breakpoint 1 at 0x40066e: file generate.c, line 35.
+(gdb) run
+Starting program: /home/taflab/workplace/9C/hw2/a.out 
+
+Breakpoint 1, main () at generate.c:35
+35	int main() {
+(gdb) next
+42	  goahead = 1;
+(gdb) print goahead
+$1 = 0
+(gdb) next
+43	  while (goahead) {
+(gdb) print god[Kahead
+$2 = 1
+(gdb) display goahead
+1: goahead = 1
+(gdb) next
+52	      puts ("This program finds words that can be associated with");
+1: goahead = 1
+(gdb) next
+This program finds words that can be associated with
+53	      puts ("phone numbers\n\n");
+1: goahead = 1
+(gdb) next
+phone numbers
+
+
+54	      puts("What is the maximum number of consonants you would like"); 
+1: goahead = 1
+(gdb) next
+What is the maximum number of consonants you would like
+55	      puts("the generated word to possess?");
+1: goahead = 1
+(gdb) next
+the generated word to possess?
+56	      puts ("(note: 0's and 1's are considered consonants)");
+1: goahead = 1
+(gdb) next
+(note: 0's and 1's are considered consonants)
+57	      gets (input);
+1: goahead = 1
+(gdb) display input
+2: input = "\020\v@\000\000\000\000"
+(gdb) next
+4
+64	      maxNumConsonant = input[0] - '0';
+1: goahead = 1
+2: input = "4\000@\000\000\000\000"
+(gdb) print maxNumConsi[Konant
+$3 = 0
+(gdb) next
+66	      puts ("Please enter a 7 digit phone number with dashes removed");
+1: goahead = 1
+2: input = "4\000@\000\000\000\000"
+(gdb) print maxNumConsonant
+$4 = 4
+(gdb) list
+61		the Ascii value of the user input and the Ascii value of '0' will 
+62		return the appropriate NUMERIC value for the character*/
+63	
+64	      maxNumConsonant = input[0] - '0';
+65	      
+66	      puts ("Please enter a 7 digit phone number with dashes removed");
+67	      gets (phone);
+68	      
+69	      /*The generateSpellings function does most of the work*/
+70	
+(gdb) next
+Please enter a 7 digit phone number with dashes removed
+67	      gets (phone);
+1: goahead = 1
+2: input = "4\000@\000\000\000\000"
+(gdb) next
+4460175
+71	      generateSpellings (phone, maxNumConsonant);
+1: goahead = 1
+2: input = "4\000@\000\000\000\000"
+(gdb) step
+generateSpellings (phone=0x7fffffffde90 "4460175", maxNumConsonant=4)
+    at generate.c:123
+123	{
+(gdb) Quit
+(gdb) next
+128	  char dial[10][4]={
+(gdb) next
+143	  level = 0;
+(gdb) next
+144	  convert (phone, phone_int);
+(gdb) step
+convert (phone=0x7fffffffde90 "4460175", phone_int=0x7fffffffde00)
+    at generate.c:233
+233	  for (i = 0; i < 7; i++) {
+(gdb) display i
+3: i = 0
+(gdb) idp[K[K[Kdisplay phone_int[0]
+4: phone_int[0] = -136505120
+(gdb) display phone_int[0][1P]1][C
+5: phone_int[1] = 0
+(gdb) display phone_int[1][1P]2]
+6: phone_int[2] = 0
+(gdb) display phone_int[2][1P]3]
+7: phone_int[3] = 0
+(gdb) display phone_int[3][1P]4]
+8: phone_int[4] = -136505120
+(gdb) display phone_int[4][1P]5]
+9: phone_int[5] = 32767
+(gdb) display phone_int[5][1P]6]
+10: phone_int[6] = -136505120
+(gdb) step
+234	      phone_int[i] = phone[i] - '0';
+3: i = 0
+4: phone_int[0] = -136505120
+5: phone_int[1] = 0
+6: phone_int[2] = 0
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) 
+233	  for (i = 0; i < 7; i++) {
+3: i = 0
+4: phone_int[0] = 4
+5: phone_int[1] = 0
+6: phone_int[2] = 0
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+234	      phone_int[i] = phone[i] - '0';
+3: i = 1
+4: phone_int[0] = 4
+5: phone_int[1] = 0
+6: phone_int[2] = 0
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+233	  for (i = 0; i < 7; i++) {
+3: i = 1
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 0
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+234	      phone_int[i] = phone[i] - '0';
+3: i = 2
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 0
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+233	  for (i = 0; i < 7; i++) {
+3: i = 2
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+234	      phone_int[i] = phone[i] - '0';
+3: i = 3
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+233	  for (i = 0; i < 7; i++) {
+3: i = 3
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) next
+234	      phone_int[i] = phone[i] - '0';
+3: i = 4
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = -136505120
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) 
+233	  for (i = 0; i < 7; i++) {
+3: i = 4
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) 
+234	      phone_int[i] = phone[i] - '0';
+3: i = 5
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 32767
+10: phone_int[6] = -136505120
+(gdb) 
+233	  for (i = 0; i < 7; i++) {
+3: i = 5
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 7
+10: phone_int[6] = -136505120
+(gdb) 
+234	      phone_int[i] = phone[i] - '0';
+3: i = 6
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 7
+10: phone_int[6] = -136505120
+(gdb) 
+233	  for (i = 0; i < 7; i++) {
+3: i = 6
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 7
+10: phone_int[6] = 5
+(gdb) next
+236	}
+3: i = 7
+4: phone_int[0] = 4
+5: phone_int[1] = 4
+6: phone_int[2] = 6
+7: phone_int[3] = 0
+8: phone_int[4] = 1
+9: phone_int[5] = 7
+10: phone_int[6] = 5
+(gdb) next
+generateSpellings (phone=0x7fffffffde90 "4460175", maxNumConsonant=4)
+    at generate.c:152
+152	  for (a = 0; a < 3; a++) {
+(gdb) step
+153	      for (b = 0; b < 3; b++) {
+(gdb) 
+154		  for (c = 0; c < 3; c++) {
+(gdb) 
+155		      for (d = 0; d < 3; d++) {	  
+(gdb) 
+156			  for (e = 0; e < 3; e++) {	    
+(gdb) 
+157			      for (f = 0; f < 3; f++) {
+(gdb) 
+158				  for (g = 0; g < 3; g++) {
+(gdb) 
+165				      word[0] = dial[phone_int[0]][a];
+(gdb) display a
+11: a = 0
+(gdb) display b
+12: b = 0
+(gdb) display c
+13: c = 0
+(gdb) display d
+14: d = 0
+(gdb) display e
+15: e = 0
+(gdb) display f
+16: f = 0
+(gdb) display g
+17: g = 0
+(gdb) step
+166				      word[1] = dial[phone_int[1]][b];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+167				      word[2] = dial[phone_int[2]][c];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+168				      word[3] = dial[phone_int[3]][d];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+169				      word[4] = dial[phone_int[4]][e];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+170				      word[5] = dial[phone_int[5]][f];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+171				      word[6] = dial[phone_int[6]][g];
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+172				      word[7] = '\0';
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+176				      print_if_good(maxNumConsonant, word, &level);
+11: a = 0
+12: b = 0
+13: c = 0
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+print_if_good (maxNumConsonant=4, word=0x7fffffffde50 "ggm01pj", 
+    level=0x7fffffffdde0) at generate.c:193
+193	  int numVowel = 0;
+(gdb) print word
+$5 = 0x7fffffffde50 "ggm01pj"
+(gdb) break 207
+Breakpoint 2 at 0x400a21: file generate.c, line 207.
+(gdb) continue
+Continuing.
+
+Breakpoint 2, print_if_good (maxNumConsonant=4, word=0x7fffffffde50 "iio01pj", 
+    level=0x7fffffffdde0) at generate.c:207
+207	      printf ("%s  ",word);
+(gdb) next
+210	      *level++;
+(gdb) display level
+18: level = (int *) 0x7fffffffdde0
+(gdb) display *level
+19: *level = 0
+(gdb) next
+215	      if ((*level)%7 == 0) {
+18: level = (int *) 0x7fffffffdde4
+19: *level = 2
+(gdb) next
+219	}
+18: level = (int *) 0x7fffffffdde4
+19: *level = 2
+(gdb) next
+generateSpellings (phone=0x7fffffffde90 "4460175", maxNumConsonant=4)
+    at generate.c:158
+158				  for (g = 0; g < 3; g++) {
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 0
+(gdb) 
+165				      word[0] = dial[phone_int[0]][a];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+166				      word[1] = dial[phone_int[1]][b];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+167				      word[2] = dial[phone_int[2]][c];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+168				      word[3] = dial[phone_int[3]][d];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+169				      word[4] = dial[phone_int[4]][e];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+170				      word[5] = dial[phone_int[5]][f];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+171				      word[6] = dial[phone_int[6]][g];
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+172				      word[7] = '\0';
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) 
+176				      print_if_good(maxNumConsonant, word, &level);
+11: a = 2
+12: b = 2
+13: c = 2
+14: d = 0
+15: e = 0
+16: f = 0
+17: g = 1
+(gdb) pront[K[K[Kint word
+$6 = "iio01pk"
+(gdb) display word
+20: word = "iio01pk"
+(gdb) step
+print_if_good (maxNumConsonant=4, word=0x7fffffffde50 "iio01pk", 
+    level=0x7fffffffdde0) at generate.c:193
+193	  int numVowel = 0;
+18: level = (int *) 0x7fffffffdde0
+19: *level = 0
+(gdb) step
+197	  for (i = 0; i < 7;i++) {
+18: level = (int *) 0x7fffffffdde0
+19: *level = 0
+(gdb) step
+198	      if (isvowel(word[i])) {
+18: level = (int *) 0x7fffffffdde0
+19: *level = 0
+(gdb) ne[K[Kcontinue
+Continuing.
+
+Breakpoint 2, print_if_good (maxNumConsonant=4, word=0x7fffffffde50 "iio01pk", 
+    level=0x7fffffffdde0) at generate.c:207
+207	      printf ("%s  ",word);
+18: level = (int *) 0x7fffffffdde0
+19: *level = 0
+(gdb) next
+210	      *level++;
+18: level = (int *) 0x7fffffffdde0
+19: *level = 0
+(gdb) step
+215	      if ((*level)%7 == 0) {
+18: level = (int *) 0x7fffffffdde4
+19: *level = 2
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 10534] will be killed.
+
+Quit anyway? (y or n) y
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ gcc -g generate.c 
+[01m[Kgenerate.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kgenerate.c:57:7:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kgets[m[K’ [-Wimplicit-function-declaration]
+       gets (input);
+[01;32m[K       ^[m[K
+/tmp/ccH5TOWf.o: In function `main':
+/home/taflab/workplace/9C/hw2/generate.c:57: warning: the `gets' function is dangerous and should not be used.
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ ./a.out 
+This program finds words that can be associated with
+phone numbers
+
+
+What is the maximum number of consonants you would like
+the generated word to possess?
+(note: 0's and 1's are considered consonants)
+4
+Please enter a 7 digit phone number with dashes removed
+66  4460175
+iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  
+iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  
+iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  
+iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  
+iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  
+iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  
+iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  
+iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  iio01pj  iio01pk  
+iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  iio01sk  iio01sl  
+iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  iio01rl  iio01sj  
+iio01sk  iio01sl  iio01pj  iio01pk  iio01pl  iio01rj  iio01rk  
+iio01rl  iio01sj  iio01sk  iio01sl  
+
+Would you like to try another number? (Y/N)
+n
+]0;taflab@taflab-laptop: ~/workplace/9C/hw2[01;32mtaflab@taflab-laptop[00m:[01;34m~/workplace/9C/hw2[00m$ exit
+exit
+
+Script done on Tue 03 Jan 2017 10:56:03 PM PST
