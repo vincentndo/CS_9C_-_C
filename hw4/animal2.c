@@ -9,10 +9,12 @@
 #define MAXSTR 80
 
 char guess_question[MAXSTR + 1];
-void PrintTreeHelper (TreeType tree, PositionType pos, char *spaces);
+TreeType ReadTreeHelper(TreeType tree, FILE *stream);
+void WriteTreeHelper(TreeType tree, FILE *stream);
+void PrintTreeHelper (TreeType tree, char *spaces);
 
 typedef struct treeStruct {
-	char *string;
+	char string[MAXSTR + 1];
 	struct treeStruct *left, *right;
 } *TreeType;
 
@@ -20,33 +22,51 @@ typedef struct positionStruct {
 	struct treeStruct *node;
 } *PositionType;
 
-char *getNode(TreeType tree, PositionType posPtr) {
-	return tree->nodes[posPtr->nodeIndex];
+TreeType getChild(TreeType tree, char *str) {
+	if (strcmp(str, "left") == 0) {
+		return tree->left;
+	} else if (strcmp(str, "right") == 0) {
+		return tree->right;
+	} else {
+		return NULL;
+	}
 }
 
-void setNode(TreeType tree, PositionType posPtr, char *str) {
-	tree->nodes[posPtr->nodeIndex] = str;
+void setChild(TreeType tree, TreeType child, char *str) {
+	if (strcmp(str, "left") == 0) {
+		tree->left = child;
+	} else if (strcmp(str, "right") == 0) {
+		tree->right = child;
+	}
 }
 
-PositionType makePosPtr(int index) {
+char *getString(TreeType tree) {
+	return tree->string;
+}
+
+void setString(TreeType tree, char *str) {
+	strcpy(tree->string, str);
+}
+
+PositionType makePosPtr(TreeType tree) {
 	PositionType ptr = (PositionType) malloc(1 * sizeof(struct positionStruct));
 
-	ptr->nodeIndex = index;
+	ptr->node = tree;
 
 	return ptr;
 }
 
-int getIndex(PositionType ptr) {
-	return ptr->nodeIndex;
+TreeType getNode(PositionType ptr) {
+	return ptr->node;
 }
 
-void setIndex(PositionType ptr, int index) {
-	ptr->nodeIndex = index;
+void setNode(PositionType ptr, TreeType tree) {
+	ptr->node = tree;
 }
 
 TreeType InitTree (char *file) {
 	FILE *stream;
-	PositionType posPtr;
+	// PositionType posPtr;
 
 	TreeType tree = (TreeType) malloc(1 * sizeof(struct treeStruct));
 	if (tree == NULL) {
@@ -68,104 +88,112 @@ TreeType InitTree (char *file) {
 		exit(EXIT_FAILURE);
 	}
 
-	for (int i = 0; i < MAXNUMQS; i++) {
-		posPtr = makePosPtr(i);
+	tree = ReadTreeHelper(tree, stream);
 
-		setNode(tree, posPtr, &storage[(MAXSTR + 1) * i]);
-		if (fgets(getNode(tree, posPtr), MAXSTR + 1, stream) != NULL) {
-			;
-		}
-		free(posPtr);
-	}
+	// for (int i = 0; i < MAXNUMQS; i++) {
+	// 	posPtr = makePosPtr(i);
 
+	// 	setNode(tree, posPtr, &storage[(MAXSTR + 1) * i]);
+	// 	if (fgets(getNode(tree, posPtr), MAXSTR + 1, stream) != NULL) {
+	// 		;
+	// 	}
+	// 	free(posPtr);
+	// }
+	// printf("%p, %s\n", tree, tree->string);
 	fclose(stream);
 	return tree;
 }
 
-void ReadTreeHelper(TreeType tree, FILE *stream) {
+TreeType ReadTreeHelper(TreeType tree, FILE *stream) {
 	char buf[MAXSTR + 1];
 
-	if (fgets(buf, MAXSTR + 1, stream) == "")
+	if (!fgets(buf, MAXSTR + 1, stream) || strcmp(buf, "") == 0) {
+		free(tree);
+		return NULL;
+	} else {
+		setString(tree, buf);
+		TreeType child = (TreeType) malloc(1 * sizeof(struct treeStruct));
+		child = ReadTreeHelper(child, stream);
+		setChild(tree, child, "left");
+		if (child != NULL) {
+			TreeType child2 = (TreeType) malloc(1 * sizeof(struct treeStruct));
+			child2 = ReadTreeHelper(child2, stream);
+			setChild(tree, child2, "right");
+		}
+		// printf("%p, %s\n", tree, tree->string);
+		return tree;
+	}
 }
 
 void WriteTree (TreeType tree, char *file) {
 	FILE *stream;
-	int check;
-	PositionType ptr;
+	// int check;
+	// PositionType ptr;
 
 	stream = fopen(file, "w");
 
-	for (int i = 0; i < MAXNUMQS; i++) {
+	// for (int i = 0; i < MAXNUMQS; i++) {
 
-		ptr = makePosPtr(i);
-		check = fputs(getNode(tree, ptr), stream);
-		free(ptr);
+	// 	ptr = makePosPtr(i);
+	// 	check = fputs(getNode(tree, ptr), stream);
+	// 	free(ptr);
 
-		if (check < 0) {
-			perror("Write error");
-			exit(EXIT_FAILURE);
-		}
-	}
+	// 	if (check < 0) {
+	// 		perror("Write error");
+	// 		exit(EXIT_FAILURE);
+	// 	}
+	// }
+	WriteTreeHelper(tree, stream);
 
 	fclose(stream);
 }
 
-void WriteTreeHelper(TreeType tree, FILE *file) {
-	char *buf[MAXSTR + 1];
-
-	fgets()
+void WriteTreeHelper(TreeType tree, FILE *stream) {
+	if (tree != NULL) {
+		fputs(getString(tree), stream);
+		WriteTreeHelper(getChild(tree, "left"), stream);
+		WriteTreeHelper(getChild(tree, "right"), stream);
+	} else {
+		fputs("\n", stream);
+	}
 }
 
 void PrintTree (TreeType tree) {
-	PositionType posPointer = makePosPtr(0);
-	// char spaces[MAXSTR + 1] = "";
-
 	printf("==== GAME TREE ====\n");
-	PrintTreeHelper(tree, posPointer, "");
+	PrintTreeHelper(tree, "");
 	printf("===================\n");
-	free(posPointer);
 }
 
-void PrintTreeHelper (TreeType tree, PositionType pos, char *spaces) {
-	printf("%s%s", spaces, getNode(tree, pos));
+void PrintTreeHelper (TreeType tree, char *spaces) {
+	printf("%s%s", spaces, getString(tree));
 
-    if (IsLeaf(tree, pos)) {
+	PositionType posPointer = makePosPtr(tree);
+    if (IsLeaf(tree, posPointer)) {
         ;
     } else {
  
- 		int index = getIndex(pos);
  		char newSpaces[MAXSTR + 1];
-    	PositionType lptr = makePosPtr(index * 2 + 1);
-    	PositionType rptr = makePosPtr(index * 2 + 2);
 
     	strcpy(newSpaces, spaces);
         strcat(newSpaces, "    ");
-        PrintTreeHelper(tree, lptr, newSpaces);
-        free(lptr);
-        PrintTreeHelper(tree, rptr, newSpaces);
-        free(rptr);
+        PrintTreeHelper(getChild(tree,"left"), newSpaces);
+        PrintTreeHelper(getChild(tree,"right"), newSpaces);
     }
+    free(posPointer);
 }
 
 PositionType Top (TreeType tree) {
-	PositionType ptr = makePosPtr(0);
+	PositionType ptr = makePosPtr(tree);
 
 	return ptr;
 }
 
 boolean IsLeaf (TreeType tree, PositionType pos){
-	int index = getIndex(pos);
-	int ret;
-
-    PositionType lptr = makePosPtr(index * 2 + 1);
-    PositionType rptr = makePosPtr(index * 2 + 2);
-
-    ret = strcmp(getNode(tree, lptr), "\n") == 0 && strcmp(getNode(tree, rptr), "\n") == 0;
-
-    free(lptr);
-    free(rptr);
-
-	return ret;
+	if (getChild(getNode(pos), "left") == NULL && getChild(getNode(pos), "right") == NULL) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
 boolean Answer (char *q) {
@@ -182,12 +210,12 @@ boolean Answer (char *q) {
 }
 
 char *Question (TreeType tree, PositionType pos) {
-	return getNode(tree, pos);
+	return getString(getNode(pos));
 }
 
 char *Guess (TreeType tree, PositionType pos) {
 	char guess_animal[MAXSTR + 1];
-	strncpy(guess_animal, getNode(tree, pos), strlen(getNode(tree, pos)) - 1);
+	strncpy(guess_animal, getString(getNode(pos)), strlen(getString(getNode(pos))) - 1);
 
 	sprintf(guess_question, "Is it %s?\n", guess_animal);
 
@@ -195,35 +223,33 @@ char *Guess (TreeType tree, PositionType pos) {
 }
 
 PositionType YesNode (TreeType tree, PositionType pos) {
-	int index = getIndex(pos);
-
+	TreeType yesNodePtr = getChild(getNode(pos), "left");
+	PositionType yesPtr = makePosPtr(yesNodePtr);
 	free(pos);
-	PositionType yesPosPtr = makePosPtr(2 * index + 1);
 
-	return yesPosPtr;
+	return yesPtr;
 }
 
 PositionType NoNode (TreeType tree, PositionType pos) {
-	int index = getIndex(pos);
-
+	TreeType noNodePtr = getChild(getNode(pos), "right");
+	PositionType noPtr = makePosPtr(noNodePtr);
 	free(pos);
-	PositionType noPosPtr = makePosPtr(2 * index + 2);
 	
-	return noPosPtr;
+	return noPtr;
 }
 
 void ReplaceNode (TreeType tree, PositionType pos, char *newA, char *newQ) {
-	int index = getIndex(pos);
-	PositionType lPosPtr = makePosPtr(2 * index + 1);
-	PositionType rPosPtr = makePosPtr(2 * index + 2);
+	TreeType subTree = getNode(pos);
+	TreeType leftChild = (TreeType) malloc(sizeof(struct treeStruct));
+	setChild(subTree, leftChild, "left");
+	TreeType rightChild = (TreeType) malloc(sizeof(struct treeStruct));
+	setChild(subTree, rightChild, "right");
 
-	strcpy(getNode(tree, lPosPtr), getNode(tree, pos));
-	strcpy(getNode(tree, pos), newQ);
-	strcpy(getNode(tree, rPosPtr), newA);
+	setString(leftChild, getString(subTree));
+	setString(subTree, newQ);
+	setString(rightChild, newA);
 	free(newA);
 	free(newQ);
-	free(lPosPtr);
-	free(rPosPtr);
 	free(pos);
 }
 
@@ -240,7 +266,7 @@ void GetNewInfo (TreeType tree, PositionType pos, char **newA, char **newQ) {
 
     fgets(*newA, MAXSTR + 1, stdin);
     strncpy(buf, *newA, strlen(*newA) - 1);
-    strncpy(wrong_animal, getNode(tree, pos), strlen(getNode(tree, pos)) - 1);
+    strncpy(wrong_animal, getString(getNode(pos)), strlen(getString(getNode(pos))) - 1);
     printf("Provide a question whose answer is yes \nfor %s and no for %s.\n", wrong_animal, buf);
 
     if ((*newQ = (char *) malloc((MAXSTR + 1) * sizeof(char))) == NULL) {

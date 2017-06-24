@@ -23,8 +23,12 @@ char *getNode(TreeType tree, PositionType posPtr) {
 	return tree->nodes[posPtr->nodeIndex];
 }
 
-void setNode(TreeType tree, PositionType posPtr, char *str) {
+void setNode_Memory(TreeType tree, PositionType posPtr, char *str) {
 	tree->nodes[posPtr->nodeIndex] = str;
+}
+
+void setNode_String(TreeType tree, PositionType posPtr, char *str) {
+	strcpy(tree->nodes[posPtr->nodeIndex], str);
 }
 
 PositionType makePosPtr(int index) {
@@ -70,9 +74,13 @@ TreeType InitTree (char *file) {
 	for (int i = 0; i < MAXNUMQS; i++) {
 		posPtr = makePosPtr(i);
 
-		setNode(tree, posPtr, &storage[(MAXSTR + 1) * i]);
+		setNode_Memory(tree, posPtr, &storage[(MAXSTR + 1) * i]);
+		char *nl = "\n";
 		if (fgets(getNode(tree, posPtr), MAXSTR + 1, stream) != NULL) {
 			;
+		} 
+		else {
+			setNode_String(tree, posPtr, nl);
 		}
 		free(posPtr);
 	}
@@ -105,7 +113,6 @@ void WriteTree (TreeType tree, char *file) {
 
 void PrintTree (TreeType tree) {
 	PositionType posPointer = makePosPtr(0);
-	// char spaces[MAXSTR + 1] = "";
 
 	printf("==== GAME TREE ====\n");
 	PrintTreeHelper(tree, posPointer, "");

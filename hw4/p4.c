@@ -40,9 +40,11 @@ int main (int argc, char *argv[])
         treefile = argv[1];
     }
     tree = InitTree (treefile);
-
+    // printf("%p\n", tree);
+    // printf("%p, %s\n", tree, tree->string);
     printf("%s", "Think of an animal. I will try to guess what it is.\n"
 		 "Please answer my questions with yes or no.\n");
+    // printf("%p, %s\n", tree, tree->string);
 
     while (TRUE) {
         pos = Top (tree);
